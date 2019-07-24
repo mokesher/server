@@ -1,15 +1,15 @@
 .git
-.vscode
 .npmignore
 .gitignore
 .dockerignore
 
 LICENSE
 Procfile
-README.md
+*.md
 
 node_modules
 npm-debug.log
 
 Dockerfile*
-docker-compose*
+*.yml
+browser/
