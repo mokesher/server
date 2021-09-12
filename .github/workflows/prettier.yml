@@ -35,4 +35,4 @@ jobs:
                   title: 'style: with prettier'
                   body: |
                       Please help me check this. Thanks! :-)
-                  labels: style
+                  labels: ci:style

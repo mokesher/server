@@ -1,0 +1,38 @@
+name: Build precompiled JavaScript file
+
+on:
+    push:
+        branches:
+            - enhanced
+    workflow_dispatch:
+
+jobs:
+    run-prettier:
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v2
+
+            - name: Use Node.js 14
+              uses: actions/setup-node@v2
+              with:
+                  node-version: 14
+                  cache: yarn
+
+            - name: Install dependencies
+              run: yarn
+
+            - name: Build the precompiled package
+              run: yarn build
+
+            - name: Create Pull Request
+              uses: peter-evans/create-pull-request@v3
+              with:
+                  token: ${{ secrets.PR_PAT }}
+                  commit-message: 'build(precompiled): make a bundle with the dependencies [skip ci]'
+                  delete-branch: true
+                  title: 'build(precompiled): make a bundle with the dependencies'
+                  body: |
+                       Merge till a new release tagged.
+                  labels: ci:build
