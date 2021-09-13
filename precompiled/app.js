@@ -12,7 +12,7 @@ var require$$5 = require('url');
 var require$$0$4 = require('crypto');
 var require$$2$1 = require('querystring');
 var require$$0$5 = require('fs');
-var require$$7 = require('dns');
+var require$$8 = require('dns');
 
 function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
 
@@ -26,7 +26,7 @@ var require$$5__default = /*#__PURE__*/_interopDefaultLegacy(require$$5);
 var require$$0__default$3 = /*#__PURE__*/_interopDefaultLegacy(require$$0$4);
 var require$$2__default$1 = /*#__PURE__*/_interopDefaultLegacy(require$$2$1);
 var require$$0__default$4 = /*#__PURE__*/_interopDefaultLegacy(require$$0$5);
-var require$$7__default = /*#__PURE__*/_interopDefaultLegacy(require$$7);
+var require$$8__default = /*#__PURE__*/_interopDefaultLegacy(require$$8);
 
 var commonjsGlobal = typeof globalThis !== 'undefined' ? globalThis : typeof window !== 'undefined' ? window : typeof global !== 'undefined' ? global : typeof self !== 'undefined' ? self : {};
 
@@ -126,16 +126,16 @@ var isObject$8 = function (it) {
 
 var global$h = global$i;
 
-var aFunction$j = function (variable) {
+var aFunction$p = function (variable) {
   return typeof variable == 'function' ? variable : undefined;
 };
 
-var getBuiltIn$e = function (namespace, method) {
-  return arguments.length < 2 ? aFunction$j(global$h[namespace]) : global$h[namespace] && global$h[namespace][method];
+var getBuiltIn$h = function (namespace, method) {
+  return arguments.length < 2 ? aFunction$p(global$h[namespace]) : global$h[namespace] && global$h[namespace][method];
 };
 
-var getBuiltIn$d = getBuiltIn$e;
-var engineUserAgent = getBuiltIn$d('navigator', 'userAgent') || '';
+var getBuiltIn$g = getBuiltIn$h;
+var engineUserAgent = getBuiltIn$g('navigator', 'userAgent') || '';
 
 var global$g = global$i;
 var userAgent$5 = engineUserAgent;
@@ -175,12 +175,12 @@ var nativeSymbol = !!Object.getOwnPropertySymbols && !fails$5(function () {
 var NATIVE_SYMBOL$1 = nativeSymbol;
 var useSymbolAsUid = NATIVE_SYMBOL$1 && !Symbol.sham && typeof Symbol.iterator == 'symbol';
 
-var getBuiltIn$c = getBuiltIn$e;
+var getBuiltIn$f = getBuiltIn$h;
 var USE_SYMBOL_AS_UID$1 = useSymbolAsUid;
 var isSymbol$3 = USE_SYMBOL_AS_UID$1 ? function (it) {
   return typeof it == 'symbol';
 } : function (it) {
-  var $Symbol = getBuiltIn$c('Symbol');
+  var $Symbol = getBuiltIn$f('Symbol');
   return typeof $Symbol == 'function' && Object(it) instanceof $Symbol;
 };
 
@@ -355,7 +355,7 @@ var objectDefineProperty = {};
 
 var isObject$4 = isObject$8;
 
-var anObject$o = function (it) {
+var anObject$A = function (it) {
   if (!isObject$4(it)) {
     throw TypeError(String(it) + ' is not an object');
   }
@@ -365,16 +365,16 @@ var anObject$o = function (it) {
 
 var DESCRIPTORS$2 = descriptors;
 var IE8_DOM_DEFINE = ie8DomDefine;
-var anObject$n = anObject$o;
+var anObject$z = anObject$A;
 var toPropertyKey = toPropertyKey$2; // eslint-disable-next-line es/no-object-defineproperty -- safe
 
 var $defineProperty = Object.defineProperty; // `Object.defineProperty` method
 // https://tc39.es/ecma262/#sec-object.defineproperty
 
 objectDefineProperty.f = DESCRIPTORS$2 ? $defineProperty : function defineProperty(O, P, Attributes) {
-  anObject$n(O);
+  anObject$z(O);
   P = toPropertyKey(P);
-  anObject$n(Attributes);
+  anObject$z(Attributes);
   if (IE8_DOM_DEFINE) try {
     return $defineProperty(O, P, Attributes);
   } catch (error) {
@@ -638,13 +638,13 @@ var objectGetOwnPropertySymbols = {};
 
 objectGetOwnPropertySymbols.f = Object.getOwnPropertySymbols;
 
-var getBuiltIn$b = getBuiltIn$e;
+var getBuiltIn$e = getBuiltIn$h;
 var getOwnPropertyNamesModule = objectGetOwnPropertyNames;
 var getOwnPropertySymbolsModule = objectGetOwnPropertySymbols;
-var anObject$m = anObject$o; // all object keys, includes non-enumerable and symbols
+var anObject$y = anObject$A; // all object keys, includes non-enumerable and symbols
 
-var ownKeys$1 = getBuiltIn$b('Reflect', 'ownKeys') || function ownKeys(it) {
-  var keys = getOwnPropertyNamesModule.f(anObject$m(it));
+var ownKeys$1 = getBuiltIn$e('Reflect', 'ownKeys') || function ownKeys(it) {
+  var keys = getOwnPropertyNamesModule.f(anObject$y(it));
   var getOwnPropertySymbols = getOwnPropertySymbolsModule.f;
   return getOwnPropertySymbols ? keys.concat(getOwnPropertySymbols(it)) : keys;
 };
@@ -765,7 +765,7 @@ var aPossiblePrototype$1 = function (it) {
 };
 
 /* eslint-disable no-proto -- safe */
-var anObject$l = anObject$o;
+var anObject$x = anObject$A;
 var aPossiblePrototype = aPossiblePrototype$1; // `Object.setPrototypeOf` method
 // https://tc39.es/ecma262/#sec-object.setprototypeof
 // Works with __proto__ only. Old v8 can't work with null proto objects.
@@ -786,7 +786,7 @@ var objectSetPrototypeOf = Object.setPrototypeOf || ('__proto__' in {} ? functio
   }
 
   return function setPrototypeOf(O, proto) {
-    anObject$l(O);
+    anObject$x(O);
     aPossiblePrototype(proto);
     if (CORRECT_SETTER) setter.call(O, proto);else O.__proto__ = proto;
     return O;
@@ -807,14 +807,14 @@ var setToStringTag$1 = function (it, TAG, STATIC) {
   }
 };
 
-var getBuiltIn$a = getBuiltIn$e;
+var getBuiltIn$d = getBuiltIn$h;
 var definePropertyModule = objectDefineProperty;
 var wellKnownSymbol$7 = wellKnownSymbol$a;
 var DESCRIPTORS = descriptors;
 var SPECIES$2 = wellKnownSymbol$7('species');
 
 var setSpecies$1 = function (CONSTRUCTOR_NAME) {
-  var Constructor = getBuiltIn$a(CONSTRUCTOR_NAME);
+  var Constructor = getBuiltIn$d(CONSTRUCTOR_NAME);
   var defineProperty = definePropertyModule.f;
 
   if (DESCRIPTORS && Constructor && !Constructor[SPECIES$2]) {
@@ -827,7 +827,7 @@ var setSpecies$1 = function (CONSTRUCTOR_NAME) {
   }
 };
 
-var aFunction$i = function (it) {
+var aFunction$o = function (it) {
   if (typeof it != 'function') {
     throw TypeError(String(it) + ' is not a function');
   }
@@ -854,10 +854,10 @@ var isArrayIteratorMethod$1 = function (it) {
   return it !== undefined && (Iterators$1.Array === it || ArrayPrototype[ITERATOR$2] === it);
 };
 
-var aFunction$h = aFunction$i; // optional / simple context binding
+var aFunction$n = aFunction$o; // optional / simple context binding
 
 var functionBindContext = function (fn, that, length) {
-  aFunction$h(fn);
+  aFunction$n(fn);
   if (that === undefined) return fn;
 
   switch (length) {
@@ -928,7 +928,7 @@ var getIteratorMethod$2 = function (it) {
   if (it != undefined) return it[ITERATOR$1] || it['@@iterator'] || Iterators[classof$1(it)];
 };
 
-var anObject$k = anObject$o;
+var anObject$w = anObject$A;
 var getIteratorMethod$1 = getIteratorMethod$2;
 
 var getIterator$2 = function (it, usingIterator) {
@@ -938,14 +938,14 @@ var getIterator$2 = function (it, usingIterator) {
     throw TypeError(String(it) + ' is not iterable');
   }
 
-  return anObject$k(iteratorMethod.call(it));
+  return anObject$w(iteratorMethod.call(it));
 };
 
-var anObject$j = anObject$o;
+var anObject$v = anObject$A;
 
 var iteratorClose$1 = function (iterator, kind, value) {
   var innerResult, innerError;
-  anObject$j(iterator);
+  anObject$v(iterator);
 
   try {
     innerResult = iterator['return'];
@@ -963,14 +963,14 @@ var iteratorClose$1 = function (iterator, kind, value) {
 
   if (kind === 'throw') throw value;
   if (innerError) throw innerResult;
-  anObject$j(innerResult);
+  anObject$v(innerResult);
   return value;
 };
 
-var anObject$i = anObject$o;
+var anObject$u = anObject$A;
 var isArrayIteratorMethod = isArrayIteratorMethod$1;
 var toLength$1 = toLength$3;
-var bind$7 = functionBindContext;
+var bind$e = functionBindContext;
 var getIterator$1 = getIterator$2;
 var getIteratorMethod = getIteratorMethod$2;
 var iteratorClose = iteratorClose$1;
@@ -980,12 +980,12 @@ var Result = function (stopped, result) {
   this.result = result;
 };
 
-var iterate$g = function (iterable, unboundFunction, options) {
+var iterate$r = function (iterable, unboundFunction, options) {
   var that = options && options.that;
   var AS_ENTRIES = !!(options && options.AS_ENTRIES);
   var IS_ITERATOR = !!(options && options.IS_ITERATOR);
   var INTERRUPTED = !!(options && options.INTERRUPTED);
-  var fn = bind$7(unboundFunction, that, 1 + AS_ENTRIES + INTERRUPTED);
+  var fn = bind$e(unboundFunction, that, 1 + AS_ENTRIES + INTERRUPTED);
   var iterator, iterFn, index, length, result, next, step;
 
   var stop = function (condition) {
@@ -995,7 +995,7 @@ var iterate$g = function (iterable, unboundFunction, options) {
 
   var callFn = function (value) {
     if (AS_ENTRIES) {
-      anObject$i(value);
+      anObject$u(value);
       return INTERRUPTED ? fn(value[0], value[1], stop) : fn(value[0], value[1]);
     }
 
@@ -1089,20 +1089,20 @@ var checkCorrectnessOfIteration$1 = function (exec, SKIP_CLOSING) {
   return ITERATION_SUPPORT;
 };
 
-var anObject$h = anObject$o;
-var aFunction$g = aFunction$i;
+var anObject$t = anObject$A;
+var aFunction$m = aFunction$o;
 var wellKnownSymbol$1 = wellKnownSymbol$a;
 var SPECIES$1 = wellKnownSymbol$1('species'); // `SpeciesConstructor` abstract operation
 // https://tc39.es/ecma262/#sec-speciesconstructor
 
-var speciesConstructor$7 = function (O, defaultConstructor) {
-  var C = anObject$h(O).constructor;
+var speciesConstructor$a = function (O, defaultConstructor) {
+  var C = anObject$t(O).constructor;
   var S;
-  return C === undefined || (S = anObject$h(C)[SPECIES$1]) == undefined ? defaultConstructor : aFunction$g(S);
+  return C === undefined || (S = anObject$t(C)[SPECIES$1]) == undefined ? defaultConstructor : aFunction$m(S);
 };
 
-var getBuiltIn$9 = getBuiltIn$e;
-var html$1 = getBuiltIn$9('document', 'documentElement');
+var getBuiltIn$c = getBuiltIn$h;
+var html$1 = getBuiltIn$c('document', 'documentElement');
 
 var userAgent$4 = engineUserAgent;
 var engineIsIos = /(?:ipad|iphone|ipod).*applewebkit/i.test(userAgent$4);
@@ -1113,7 +1113,7 @@ var engineIsNode = classof(global$6.process) == 'process';
 
 var global$5 = global$i;
 var fails$2 = fails$8;
-var bind$6 = functionBindContext;
+var bind$d = functionBindContext;
 var html = html$1;
 var createElement = documentCreateElement;
 var IS_IOS$1 = engineIsIos;
@@ -1197,7 +1197,7 @@ if (!set || !clear) {
     channel = new MessageChannel();
     port$1 = channel.port2;
     channel.port1.onmessage = listener;
-    defer = bind$6(port$1.postMessage, port$1, 1); // Browsers with postMessage, skip WebWorkers
+    defer = bind$d(port$1.postMessage, port$1, 1); // Browsers with postMessage, skip WebWorkers
     // IE8 has postMessage, but it's sync & typeof its postMessage is 'object'
   } else if (global$5.addEventListener && typeof postMessage == 'function' && !global$5.importScripts && location && location.protocol !== 'file:' && !fails$2(post)) {
     defer = post;
@@ -1325,7 +1325,7 @@ var microtask$1 = queueMicrotask || function (fn) {
 
 var newPromiseCapability$2 = {};
 
-var aFunction$f = aFunction$i;
+var aFunction$l = aFunction$o;
 
 var PromiseCapability = function (C) {
   var resolve, reject;
@@ -1334,8 +1334,8 @@ var PromiseCapability = function (C) {
     resolve = $$resolve;
     reject = $$reject;
   });
-  this.resolve = aFunction$f(resolve);
-  this.reject = aFunction$f(reject);
+  this.resolve = aFunction$l(resolve);
+  this.reject = aFunction$l(reject);
 }; // `NewPromiseCapability` abstract operation
 // https://tc39.es/ecma262/#sec-newpromisecapability
 
@@ -1344,12 +1344,12 @@ newPromiseCapability$2.f = function (C) {
   return new PromiseCapability(C);
 };
 
-var anObject$g = anObject$o;
+var anObject$s = anObject$A;
 var isObject$1 = isObject$8;
 var newPromiseCapability$1 = newPromiseCapability$2;
 
 var promiseResolve$1 = function (C, x) {
-  anObject$g(C);
+  anObject$s(C);
   if (isObject$1(x) && x.constructor === C) return x;
   var promiseCapability = newPromiseCapability$1.f(C);
   var resolve = promiseCapability.resolve;
@@ -1383,9 +1383,9 @@ var perform$2 = function (exec) {
 
 var engineIsBrowser = typeof window == 'object';
 
-var $$i = _export;
+var $$v = _export;
 var global$1 = global$i;
-var getBuiltIn$8 = getBuiltIn$e;
+var getBuiltIn$b = getBuiltIn$h;
 var NativePromise = nativePromiseConstructor;
 var redefine = redefine$3.exports;
 var redefineAll = redefineAll$1;
@@ -1393,12 +1393,12 @@ var setPrototypeOf = objectSetPrototypeOf;
 var setToStringTag = setToStringTag$1;
 var setSpecies = setSpecies$1;
 var isObject = isObject$8;
-var aFunction$e = aFunction$i;
+var aFunction$k = aFunction$o;
 var anInstance = anInstance$1;
 var inspectSource = inspectSource$3;
-var iterate$f = iterate$g;
+var iterate$q = iterate$r;
 var checkCorrectnessOfIteration = checkCorrectnessOfIteration$1;
-var speciesConstructor$6 = speciesConstructor$7;
+var speciesConstructor$9 = speciesConstructor$a;
 var task = task$1.set;
 var microtask = microtask$1;
 var promiseResolve = promiseResolve$1;
@@ -1582,7 +1582,7 @@ var onHandleUnhandled = function (state) {
   });
 };
 
-var bind$5 = function (fn, state, unwrap) {
+var bind$c = function (fn, state, unwrap) {
   return function (value) {
     fn(state, value, unwrap);
   };
@@ -1613,7 +1613,7 @@ var internalResolve = function (state, value, unwrap) {
         };
 
         try {
-          then.call(value, bind$5(internalResolve, wrapper, state), bind$5(internalReject, wrapper, state));
+          then.call(value, bind$c(internalResolve, wrapper, state), bind$c(internalReject, wrapper, state));
         } catch (error) {
           internalReject(wrapper, error, state);
         }
@@ -1635,12 +1635,12 @@ if (FORCED$1) {
   // 25.4.3.1 Promise(executor)
   PromiseConstructor = function Promise(executor) {
     anInstance(this, PromiseConstructor, PROMISE);
-    aFunction$e(executor);
+    aFunction$k(executor);
     Internal.call(this);
     var state = getInternalState(this);
 
     try {
-      executor(bind$5(internalResolve, state), bind$5(internalReject, state));
+      executor(bind$c(internalResolve, state), bind$c(internalReject, state));
     } catch (error) {
       internalReject(state, error);
     }
@@ -1666,7 +1666,7 @@ if (FORCED$1) {
     // https://tc39.es/ecma262/#sec-promise.prototype.then
     then: function then(onFulfilled, onRejected) {
       var state = getInternalPromiseState(this);
-      var reaction = newPromiseCapability(speciesConstructor$6(this, PromiseConstructor));
+      var reaction = newPromiseCapability(speciesConstructor$9(this, PromiseConstructor));
       reaction.ok = typeof onFulfilled == 'function' ? onFulfilled : true;
       reaction.fail = typeof onRejected == 'function' && onRejected;
       reaction.domain = IS_NODE ? process$1.domain : undefined;
@@ -1686,8 +1686,8 @@ if (FORCED$1) {
     var promise = new Internal();
     var state = getInternalState(promise);
     this.promise = promise;
-    this.resolve = bind$5(internalResolve, state);
-    this.reject = bind$5(internalReject, state);
+    this.resolve = bind$c(internalResolve, state);
+    this.reject = bind$c(internalReject, state);
   };
 
   newPromiseCapabilityModule$1.f = newPromiseCapability = function (C) {
@@ -1727,7 +1727,7 @@ if (FORCED$1) {
   }
 }
 
-$$i({
+$$v({
   global: true,
   wrap: true,
   forced: FORCED$1
@@ -1736,9 +1736,9 @@ $$i({
 });
 setToStringTag(PromiseConstructor, PROMISE, false);
 setSpecies(PROMISE);
-PromiseWrapper = getBuiltIn$8(PROMISE); // statics
+PromiseWrapper = getBuiltIn$b(PROMISE); // statics
 
-$$i({
+$$v({
   target: PROMISE,
   stat: true,
   forced: FORCED$1
@@ -1751,7 +1751,7 @@ $$i({
     return capability.promise;
   }
 });
-$$i({
+$$v({
   target: PROMISE,
   stat: true,
   forced: FORCED$1
@@ -1762,7 +1762,7 @@ $$i({
     return promiseResolve(this, x);
   }
 });
-$$i({
+$$v({
   target: PROMISE,
   stat: true,
   forced: INCORRECT_ITERATION
@@ -1775,11 +1775,11 @@ $$i({
     var resolve = capability.resolve;
     var reject = capability.reject;
     var result = perform$1(function () {
-      var $promiseResolve = aFunction$e(C.resolve);
+      var $promiseResolve = aFunction$k(C.resolve);
       var values = [];
       var counter = 0;
       var remaining = 1;
-      iterate$f(iterable, function (promise) {
+      iterate$q(iterable, function (promise) {
         var index = counter++;
         var alreadyCalled = false;
         values.push(undefined);
@@ -1803,8 +1803,8 @@ $$i({
     var capability = newPromiseCapability(C);
     var reject = capability.reject;
     var result = perform$1(function () {
-      var $promiseResolve = aFunction$e(C.resolve);
-      iterate$f(iterable, function (promise) {
+      var $promiseResolve = aFunction$k(C.resolve);
+      iterate$q(iterable, function (promise) {
         $promiseResolve.call(C, promise).then(capability.resolve, reject);
       });
     });
@@ -1857,11 +1857,11 @@ var devDependencies = {
 	"@rollup/plugin-commonjs": "^20.0.0",
 	"@rollup/plugin-json": "^4.1.0",
 	"@rollup/plugin-node-resolve": "^13.0.4",
-	"core-js": "3",
 	jest: "^27.1.0",
 	pkg: "^5.3.2",
 	prettier: "^2.3.2",
-	rollup: "^2.56.3"
+	rollup: "^2.56.3",
+	"core-js": "3"
 };
 var require$$0 = {
 	name: name,
@@ -1956,8 +1956,8 @@ var userAgent = engineUserAgent;
 var webkit = userAgent.match(/AppleWebKit\/(\d+)\./);
 var engineWebkitVersion = !!webkit && +webkit[1];
 
-var $$h = _export;
-var aFunction$d = aFunction$i;
+var $$u = _export;
+var aFunction$j = aFunction$o;
 var toObject = toObject$2;
 var toLength = toLength$3;
 var toString = toString$1;
@@ -2041,13 +2041,13 @@ var getSortCompare = function (comparefn) {
 // https://tc39.es/ecma262/#sec-array.prototype.sort
 
 
-$$h({
+$$u({
   target: 'Array',
   proto: true,
   forced: FORCED
 }, {
   sort: function sort(comparefn) {
-    if (comparefn !== undefined) aFunction$d(comparefn);
+    if (comparefn !== undefined) aFunction$j(comparefn);
     var array = toObject(this);
     if (STABLE_SORT) return comparefn === undefined ? nativeSort.call(array) : nativeSort.call(array, comparefn);
     var items = [];
@@ -2224,42 +2224,14 @@ const error = message => {
 
 var cli_1 = cli;
 
-const collector = (job, cycle) => setTimeout(() => {
-  let keep = false;
-  Object.keys(job.cache || {}).forEach(key => {
-    if (!job.cache[key]) return;
-    job.cache[key].expiration < Date.now() ? job.cache[key] = null : keep = keep || true;
-  });
-  keep ? collector(job, cycle) : job.collector = null;
-}, cycle);
-
-var cache$b = (job, parameter, live = 30 * 60 * 1000) => {
-  // Disable the cache when the NO_CACHE = true.
-  if (process.env.NO_CACHE === 'true') {
-    return job(parameter);
-  }
-
-  const cache = job.cache ? job.cache : job.cache = {};
-  if (!job.collector) job.collector = collector(job, live / 2);
-  const key = parameter == null ? 'default' : typeof parameter === 'object' ? parameter.id || parameter.key || JSON.stringify(parameter) : parameter;
-
-  const done = (status, result) => cache[key].execution = Promise[status](result);
-
-  if (!cache[key] || cache[key].expiration < Date.now()) cache[key] = {
-    expiration: Date.now() + live,
-    execution: job(parameter).then(result => done('resolve', result)).catch(result => done('reject', result))
-  };
-  return cache[key].execution;
-};
-
 var insure$6 = {exports: {}};
 
-var anObject$f = anObject$o;
-var aFunction$c = aFunction$i; // https://github.com/tc39/collection-methods
+var anObject$r = anObject$A;
+var aFunction$i = aFunction$o; // https://github.com/tc39/collection-methods
 
 var collectionAddAll$1 = function () {
-  var set = anObject$f(this);
-  var adder = aFunction$c(set.add);
+  var set = anObject$r(this);
+  var adder = aFunction$i(set.add);
 
   for (var k = 0, len = arguments.length; k < len; k++) {
     adder.call(set, arguments[k]);
@@ -2268,28 +2240,28 @@ var collectionAddAll$1 = function () {
   return set;
 };
 
-var $$g = _export;
-var IS_PURE$f = isPure;
+var $$t = _export;
+var IS_PURE$s = isPure;
 var collectionAddAll = collectionAddAll$1; // `Set.prototype.addAll` method
 // https://github.com/tc39/proposal-collection-methods
 
-$$g({
+$$t({
   target: 'Set',
   proto: true,
   real: true,
-  forced: IS_PURE$f
+  forced: IS_PURE$s
 }, {
   addAll: function addAll() {
     return collectionAddAll.apply(this, arguments);
   }
 });
 
-var anObject$e = anObject$o;
-var aFunction$b = aFunction$i; // https://github.com/tc39/collection-methods
+var anObject$q = anObject$A;
+var aFunction$h = aFunction$o; // https://github.com/tc39/collection-methods
 
-var collectionDeleteAll$1 = function () {
-  var collection = anObject$e(this);
-  var remover = aFunction$b(collection['delete']);
+var collectionDeleteAll$2 = function () {
+  var collection = anObject$q(this);
+  var remover = aFunction$h(collection['delete']);
   var allDeleted = true;
   var wasDeleted;
 
@@ -2301,42 +2273,42 @@ var collectionDeleteAll$1 = function () {
   return !!allDeleted;
 };
 
-var $$f = _export;
-var IS_PURE$e = isPure;
-var collectionDeleteAll = collectionDeleteAll$1; // `Set.prototype.deleteAll` method
+var $$s = _export;
+var IS_PURE$r = isPure;
+var collectionDeleteAll$1 = collectionDeleteAll$2; // `Set.prototype.deleteAll` method
 // https://github.com/tc39/proposal-collection-methods
 
-$$f({
+$$s({
   target: 'Set',
   proto: true,
   real: true,
-  forced: IS_PURE$e
+  forced: IS_PURE$r
 }, {
   deleteAll: function deleteAll() {
-    return collectionDeleteAll.apply(this, arguments);
+    return collectionDeleteAll$1.apply(this, arguments);
   }
 });
 
-var $$e = _export;
-var IS_PURE$d = isPure;
-var getBuiltIn$7 = getBuiltIn$e;
-var anObject$d = anObject$o;
-var aFunction$a = aFunction$i;
-var speciesConstructor$5 = speciesConstructor$7;
-var iterate$e = iterate$g; // `Set.prototype.difference` method
+var $$r = _export;
+var IS_PURE$q = isPure;
+var getBuiltIn$a = getBuiltIn$h;
+var anObject$p = anObject$A;
+var aFunction$g = aFunction$o;
+var speciesConstructor$8 = speciesConstructor$a;
+var iterate$p = iterate$r; // `Set.prototype.difference` method
 // https://github.com/tc39/proposal-set-methods
 
-$$e({
+$$r({
   target: 'Set',
   proto: true,
   real: true,
-  forced: IS_PURE$d
+  forced: IS_PURE$q
 }, {
   difference: function difference(iterable) {
-    var set = anObject$d(this);
-    var newSet = new (speciesConstructor$5(set, getBuiltIn$7('Set')))(set);
-    var remover = aFunction$a(newSet['delete']);
-    iterate$e(iterable, function (value) {
+    var set = anObject$p(this);
+    var newSet = new (speciesConstructor$8(set, getBuiltIn$a('Set')))(set);
+    var remover = aFunction$g(newSet['delete']);
+    iterate$p(iterable, function (value) {
       remover.call(newSet, value);
     });
     return newSet;
@@ -2348,27 +2320,27 @@ var getSetIterator$7 = function (it) {
   return Set.prototype.values.call(it);
 };
 
-var $$d = _export;
-var IS_PURE$c = isPure;
-var anObject$c = anObject$o;
-var bind$4 = functionBindContext;
+var $$q = _export;
+var IS_PURE$p = isPure;
+var anObject$o = anObject$A;
+var bind$b = functionBindContext;
 var getSetIterator$6 = getSetIterator$7;
-var iterate$d = iterate$g; // `Set.prototype.every` method
+var iterate$o = iterate$r; // `Set.prototype.every` method
 // https://github.com/tc39/proposal-collection-methods
 
-$$d({
+$$q({
   target: 'Set',
   proto: true,
   real: true,
-  forced: IS_PURE$c
+  forced: IS_PURE$p
 }, {
   every: function every(callbackfn
   /* , thisArg */
   ) {
-    var set = anObject$c(this);
+    var set = anObject$o(this);
     var iterator = getSetIterator$6(set);
-    var boundFunction = bind$4(callbackfn, arguments.length > 1 ? arguments[1] : undefined, 3);
-    return !iterate$d(iterator, function (value, stop) {
+    var boundFunction = bind$b(callbackfn, arguments.length > 1 ? arguments[1] : undefined, 3);
+    return !iterate$o(iterator, function (value, stop) {
       if (!boundFunction(value, value, set)) return stop();
     }, {
       IS_ITERATOR: true,
@@ -2377,32 +2349,32 @@ $$d({
   }
 });
 
-var $$c = _export;
-var IS_PURE$b = isPure;
-var getBuiltIn$6 = getBuiltIn$e;
-var anObject$b = anObject$o;
-var aFunction$9 = aFunction$i;
-var bind$3 = functionBindContext;
-var speciesConstructor$4 = speciesConstructor$7;
+var $$p = _export;
+var IS_PURE$o = isPure;
+var getBuiltIn$9 = getBuiltIn$h;
+var anObject$n = anObject$A;
+var aFunction$f = aFunction$o;
+var bind$a = functionBindContext;
+var speciesConstructor$7 = speciesConstructor$a;
 var getSetIterator$5 = getSetIterator$7;
-var iterate$c = iterate$g; // `Set.prototype.filter` method
+var iterate$n = iterate$r; // `Set.prototype.filter` method
 // https://github.com/tc39/proposal-collection-methods
 
-$$c({
+$$p({
   target: 'Set',
   proto: true,
   real: true,
-  forced: IS_PURE$b
+  forced: IS_PURE$o
 }, {
   filter: function filter(callbackfn
   /* , thisArg */
   ) {
-    var set = anObject$b(this);
+    var set = anObject$n(this);
     var iterator = getSetIterator$5(set);
-    var boundFunction = bind$3(callbackfn, arguments.length > 1 ? arguments[1] : undefined, 3);
-    var newSet = new (speciesConstructor$4(set, getBuiltIn$6('Set')))();
-    var adder = aFunction$9(newSet.add);
-    iterate$c(iterator, function (value) {
+    var boundFunction = bind$a(callbackfn, arguments.length > 1 ? arguments[1] : undefined, 3);
+    var newSet = new (speciesConstructor$7(set, getBuiltIn$9('Set')))();
+    var adder = aFunction$f(newSet.add);
+    iterate$n(iterator, function (value) {
       if (boundFunction(value, value, set)) adder.call(newSet, value);
     }, {
       IS_ITERATOR: true
@@ -2411,27 +2383,27 @@ $$c({
   }
 });
 
-var $$b = _export;
-var IS_PURE$a = isPure;
-var anObject$a = anObject$o;
-var bind$2 = functionBindContext;
+var $$o = _export;
+var IS_PURE$n = isPure;
+var anObject$m = anObject$A;
+var bind$9 = functionBindContext;
 var getSetIterator$4 = getSetIterator$7;
-var iterate$b = iterate$g; // `Set.prototype.find` method
+var iterate$m = iterate$r; // `Set.prototype.find` method
 // https://github.com/tc39/proposal-collection-methods
 
-$$b({
+$$o({
   target: 'Set',
   proto: true,
   real: true,
-  forced: IS_PURE$a
+  forced: IS_PURE$n
 }, {
   find: function find(callbackfn
   /* , thisArg */
   ) {
-    var set = anObject$a(this);
+    var set = anObject$m(this);
     var iterator = getSetIterator$4(set);
-    var boundFunction = bind$2(callbackfn, arguments.length > 1 ? arguments[1] : undefined, 3);
-    return iterate$b(iterator, function (value, stop) {
+    var boundFunction = bind$9(callbackfn, arguments.length > 1 ? arguments[1] : undefined, 3);
+    return iterate$m(iterator, function (value, stop) {
       if (boundFunction(value, value, set)) return stop(value);
     }, {
       IS_ITERATOR: true,
@@ -2440,50 +2412,50 @@ $$b({
   }
 });
 
-var $$a = _export;
-var IS_PURE$9 = isPure;
-var getBuiltIn$5 = getBuiltIn$e;
-var anObject$9 = anObject$o;
-var aFunction$8 = aFunction$i;
-var speciesConstructor$3 = speciesConstructor$7;
-var iterate$a = iterate$g; // `Set.prototype.intersection` method
+var $$n = _export;
+var IS_PURE$m = isPure;
+var getBuiltIn$8 = getBuiltIn$h;
+var anObject$l = anObject$A;
+var aFunction$e = aFunction$o;
+var speciesConstructor$6 = speciesConstructor$a;
+var iterate$l = iterate$r; // `Set.prototype.intersection` method
 // https://github.com/tc39/proposal-set-methods
 
-$$a({
+$$n({
   target: 'Set',
   proto: true,
   real: true,
-  forced: IS_PURE$9
+  forced: IS_PURE$m
 }, {
   intersection: function intersection(iterable) {
-    var set = anObject$9(this);
-    var newSet = new (speciesConstructor$3(set, getBuiltIn$5('Set')))();
-    var hasCheck = aFunction$8(set.has);
-    var adder = aFunction$8(newSet.add);
-    iterate$a(iterable, function (value) {
+    var set = anObject$l(this);
+    var newSet = new (speciesConstructor$6(set, getBuiltIn$8('Set')))();
+    var hasCheck = aFunction$e(set.has);
+    var adder = aFunction$e(newSet.add);
+    iterate$l(iterable, function (value) {
       if (hasCheck.call(set, value)) adder.call(newSet, value);
     });
     return newSet;
   }
 });
 
-var $$9 = _export;
-var IS_PURE$8 = isPure;
-var anObject$8 = anObject$o;
-var aFunction$7 = aFunction$i;
-var iterate$9 = iterate$g; // `Set.prototype.isDisjointFrom` method
+var $$m = _export;
+var IS_PURE$l = isPure;
+var anObject$k = anObject$A;
+var aFunction$d = aFunction$o;
+var iterate$k = iterate$r; // `Set.prototype.isDisjointFrom` method
 // https://tc39.github.io/proposal-set-methods/#Set.prototype.isDisjointFrom
 
-$$9({
+$$m({
   target: 'Set',
   proto: true,
   real: true,
-  forced: IS_PURE$8
+  forced: IS_PURE$l
 }, {
   isDisjointFrom: function isDisjointFrom(iterable) {
-    var set = anObject$8(this);
-    var hasCheck = aFunction$7(set.has);
-    return !iterate$9(iterable, function (value, stop) {
+    var set = anObject$k(this);
+    var hasCheck = aFunction$d(set.has);
+    return !iterate$k(iterable, function (value, stop) {
       if (hasCheck.call(set, value) === true) return stop();
     }, {
       INTERRUPTED: true
@@ -2491,32 +2463,32 @@ $$9({
   }
 });
 
-var $$8 = _export;
-var IS_PURE$7 = isPure;
-var getBuiltIn$4 = getBuiltIn$e;
-var anObject$7 = anObject$o;
-var aFunction$6 = aFunction$i;
+var $$l = _export;
+var IS_PURE$k = isPure;
+var getBuiltIn$7 = getBuiltIn$h;
+var anObject$j = anObject$A;
+var aFunction$c = aFunction$o;
 var getIterator = getIterator$2;
-var iterate$8 = iterate$g; // `Set.prototype.isSubsetOf` method
+var iterate$j = iterate$r; // `Set.prototype.isSubsetOf` method
 // https://tc39.github.io/proposal-set-methods/#Set.prototype.isSubsetOf
 
-$$8({
+$$l({
   target: 'Set',
   proto: true,
   real: true,
-  forced: IS_PURE$7
+  forced: IS_PURE$k
 }, {
   isSubsetOf: function isSubsetOf(iterable) {
     var iterator = getIterator(this);
-    var otherSet = anObject$7(iterable);
+    var otherSet = anObject$j(iterable);
     var hasCheck = otherSet.has;
 
     if (typeof hasCheck != 'function') {
-      otherSet = new (getBuiltIn$4('Set'))(iterable);
-      hasCheck = aFunction$6(otherSet.has);
+      otherSet = new (getBuiltIn$7('Set'))(iterable);
+      hasCheck = aFunction$c(otherSet.has);
     }
 
-    return !iterate$8(iterator, function (value, stop) {
+    return !iterate$j(iterator, function (value, stop) {
       if (hasCheck.call(otherSet, value) === false) return stop();
     }, {
       IS_ITERATOR: true,
@@ -2525,23 +2497,23 @@ $$8({
   }
 });
 
-var $$7 = _export;
-var IS_PURE$6 = isPure;
-var anObject$6 = anObject$o;
-var aFunction$5 = aFunction$i;
-var iterate$7 = iterate$g; // `Set.prototype.isSupersetOf` method
+var $$k = _export;
+var IS_PURE$j = isPure;
+var anObject$i = anObject$A;
+var aFunction$b = aFunction$o;
+var iterate$i = iterate$r; // `Set.prototype.isSupersetOf` method
 // https://tc39.github.io/proposal-set-methods/#Set.prototype.isSupersetOf
 
-$$7({
+$$k({
   target: 'Set',
   proto: true,
   real: true,
-  forced: IS_PURE$6
+  forced: IS_PURE$j
 }, {
   isSupersetOf: function isSupersetOf(iterable) {
-    var set = anObject$6(this);
-    var hasCheck = aFunction$5(set.has);
-    return !iterate$7(iterable, function (value, stop) {
+    var set = anObject$i(this);
+    var hasCheck = aFunction$b(set.has);
+    return !iterate$i(iterable, function (value, stop) {
       if (hasCheck.call(set, value) === false) return stop();
     }, {
       INTERRUPTED: true
@@ -2549,25 +2521,25 @@ $$7({
   }
 });
 
-var $$6 = _export;
-var IS_PURE$5 = isPure;
-var anObject$5 = anObject$o;
+var $$j = _export;
+var IS_PURE$i = isPure;
+var anObject$h = anObject$A;
 var getSetIterator$3 = getSetIterator$7;
-var iterate$6 = iterate$g; // `Set.prototype.join` method
+var iterate$h = iterate$r; // `Set.prototype.join` method
 // https://github.com/tc39/proposal-collection-methods
 
-$$6({
+$$j({
   target: 'Set',
   proto: true,
   real: true,
-  forced: IS_PURE$5
+  forced: IS_PURE$i
 }, {
   join: function join(separator) {
-    var set = anObject$5(this);
+    var set = anObject$h(this);
     var iterator = getSetIterator$3(set);
     var sep = separator === undefined ? ',' : String(separator);
     var result = [];
-    iterate$6(iterator, result.push, {
+    iterate$h(iterator, result.push, {
       that: result,
       IS_ITERATOR: true
     });
@@ -2575,32 +2547,32 @@ $$6({
   }
 });
 
-var $$5 = _export;
-var IS_PURE$4 = isPure;
-var getBuiltIn$3 = getBuiltIn$e;
-var anObject$4 = anObject$o;
-var aFunction$4 = aFunction$i;
-var bind$1 = functionBindContext;
-var speciesConstructor$2 = speciesConstructor$7;
+var $$i = _export;
+var IS_PURE$h = isPure;
+var getBuiltIn$6 = getBuiltIn$h;
+var anObject$g = anObject$A;
+var aFunction$a = aFunction$o;
+var bind$8 = functionBindContext;
+var speciesConstructor$5 = speciesConstructor$a;
 var getSetIterator$2 = getSetIterator$7;
-var iterate$5 = iterate$g; // `Set.prototype.map` method
+var iterate$g = iterate$r; // `Set.prototype.map` method
 // https://github.com/tc39/proposal-collection-methods
 
-$$5({
+$$i({
   target: 'Set',
   proto: true,
   real: true,
-  forced: IS_PURE$4
+  forced: IS_PURE$h
 }, {
   map: function map(callbackfn
   /* , thisArg */
   ) {
-    var set = anObject$4(this);
+    var set = anObject$g(this);
     var iterator = getSetIterator$2(set);
-    var boundFunction = bind$1(callbackfn, arguments.length > 1 ? arguments[1] : undefined, 3);
-    var newSet = new (speciesConstructor$2(set, getBuiltIn$3('Set')))();
-    var adder = aFunction$4(newSet.add);
-    iterate$5(iterator, function (value) {
+    var boundFunction = bind$8(callbackfn, arguments.length > 1 ? arguments[1] : undefined, 3);
+    var newSet = new (speciesConstructor$5(set, getBuiltIn$6('Set')))();
+    var adder = aFunction$a(newSet.add);
+    iterate$g(iterator, function (value) {
       adder.call(newSet, boundFunction(value, value, set));
     }, {
       IS_ITERATOR: true
@@ -2609,29 +2581,29 @@ $$5({
   }
 });
 
-var $$4 = _export;
-var IS_PURE$3 = isPure;
-var anObject$3 = anObject$o;
-var aFunction$3 = aFunction$i;
+var $$h = _export;
+var IS_PURE$g = isPure;
+var anObject$f = anObject$A;
+var aFunction$9 = aFunction$o;
 var getSetIterator$1 = getSetIterator$7;
-var iterate$4 = iterate$g; // `Set.prototype.reduce` method
+var iterate$f = iterate$r; // `Set.prototype.reduce` method
 // https://github.com/tc39/proposal-collection-methods
 
-$$4({
+$$h({
   target: 'Set',
   proto: true,
   real: true,
-  forced: IS_PURE$3
+  forced: IS_PURE$g
 }, {
   reduce: function reduce(callbackfn
   /* , initialValue */
   ) {
-    var set = anObject$3(this);
+    var set = anObject$f(this);
     var iterator = getSetIterator$1(set);
     var noInitial = arguments.length < 2;
     var accumulator = noInitial ? undefined : arguments[1];
-    aFunction$3(callbackfn);
-    iterate$4(iterator, function (value) {
+    aFunction$9(callbackfn);
+    iterate$f(iterator, function (value) {
       if (noInitial) {
         noInitial = false;
         accumulator = value;
@@ -2646,27 +2618,27 @@ $$4({
   }
 });
 
-var $$3 = _export;
-var IS_PURE$2 = isPure;
-var anObject$2 = anObject$o;
-var bind = functionBindContext;
+var $$g = _export;
+var IS_PURE$f = isPure;
+var anObject$e = anObject$A;
+var bind$7 = functionBindContext;
 var getSetIterator = getSetIterator$7;
-var iterate$3 = iterate$g; // `Set.prototype.some` method
+var iterate$e = iterate$r; // `Set.prototype.some` method
 // https://github.com/tc39/proposal-collection-methods
 
-$$3({
+$$g({
   target: 'Set',
   proto: true,
   real: true,
-  forced: IS_PURE$2
+  forced: IS_PURE$f
 }, {
   some: function some(callbackfn
   /* , thisArg */
   ) {
-    var set = anObject$2(this);
+    var set = anObject$e(this);
     var iterator = getSetIterator(set);
-    var boundFunction = bind(callbackfn, arguments.length > 1 ? arguments[1] : undefined, 3);
-    return iterate$3(iterator, function (value, stop) {
+    var boundFunction = bind$7(callbackfn, arguments.length > 1 ? arguments[1] : undefined, 3);
+    return iterate$e(iterator, function (value, stop) {
       if (boundFunction(value, value, set)) return stop();
     }, {
       IS_ITERATOR: true,
@@ -2675,52 +2647,52 @@ $$3({
   }
 });
 
-var $$2 = _export;
-var IS_PURE$1 = isPure;
-var getBuiltIn$2 = getBuiltIn$e;
-var anObject$1 = anObject$o;
-var aFunction$2 = aFunction$i;
-var speciesConstructor$1 = speciesConstructor$7;
-var iterate$2 = iterate$g; // `Set.prototype.symmetricDifference` method
+var $$f = _export;
+var IS_PURE$e = isPure;
+var getBuiltIn$5 = getBuiltIn$h;
+var anObject$d = anObject$A;
+var aFunction$8 = aFunction$o;
+var speciesConstructor$4 = speciesConstructor$a;
+var iterate$d = iterate$r; // `Set.prototype.symmetricDifference` method
 // https://github.com/tc39/proposal-set-methods
 
-$$2({
+$$f({
   target: 'Set',
   proto: true,
   real: true,
-  forced: IS_PURE$1
+  forced: IS_PURE$e
 }, {
   symmetricDifference: function symmetricDifference(iterable) {
-    var set = anObject$1(this);
-    var newSet = new (speciesConstructor$1(set, getBuiltIn$2('Set')))(set);
-    var remover = aFunction$2(newSet['delete']);
-    var adder = aFunction$2(newSet.add);
-    iterate$2(iterable, function (value) {
+    var set = anObject$d(this);
+    var newSet = new (speciesConstructor$4(set, getBuiltIn$5('Set')))(set);
+    var remover = aFunction$8(newSet['delete']);
+    var adder = aFunction$8(newSet.add);
+    iterate$d(iterable, function (value) {
       remover.call(newSet, value) || adder.call(newSet, value);
     });
     return newSet;
   }
 });
 
-var $$1 = _export;
-var IS_PURE = isPure;
-var getBuiltIn$1 = getBuiltIn$e;
-var anObject = anObject$o;
-var aFunction$1 = aFunction$i;
-var speciesConstructor = speciesConstructor$7;
-var iterate$1 = iterate$g; // `Set.prototype.union` method
+var $$e = _export;
+var IS_PURE$d = isPure;
+var getBuiltIn$4 = getBuiltIn$h;
+var anObject$c = anObject$A;
+var aFunction$7 = aFunction$o;
+var speciesConstructor$3 = speciesConstructor$a;
+var iterate$c = iterate$r; // `Set.prototype.union` method
 // https://github.com/tc39/proposal-set-methods
 
-$$1({
+$$e({
   target: 'Set',
   proto: true,
   real: true,
-  forced: IS_PURE
+  forced: IS_PURE$d
 }, {
   union: function union(iterable) {
-    var set = anObject(this);
-    var newSet = new (speciesConstructor(set, getBuiltIn$1('Set')))(set);
-    iterate$1(iterable, aFunction$1(newSet.add), {
+    var set = anObject$c(this);
+    var newSet = new (speciesConstructor$3(set, getBuiltIn$4('Set')))(set);
+    iterate$c(iterable, aFunction$7(newSet.add), {
       that: newSet
     });
     return newSet;
@@ -2742,10 +2714,10 @@ function _defineProperty(obj, key, value) {
   return obj;
 }
 
-const EventEmitter = require$$0__default$1['default'];
+const EventEmitter$1 = require$$0__default$1['default'];
 const ON_CANCEL$1 = 'cancel';
 
-class CancelRequest$1 extends EventEmitter {
+class CancelRequest$1 extends EventEmitter$1 {
   constructor(...args) {
     super(...args);
 
@@ -2937,10 +2909,591 @@ select$7.exports = (list, info) => {
 
 select$7.exports.ENABLE_FLAC = (process.env.ENABLE_FLAC || '').toLowerCase() === 'true';
 
-const cache$a = cache$b;
+var $$d = _export;
+var IS_PURE$c = isPure;
+var collectionDeleteAll = collectionDeleteAll$2; // `Map.prototype.deleteAll` method
+// https://github.com/tc39/proposal-collection-methods
+
+$$d({
+  target: 'Map',
+  proto: true,
+  real: true,
+  forced: IS_PURE$c
+}, {
+  deleteAll: function deleteAll() {
+    return collectionDeleteAll.apply(this, arguments);
+  }
+});
+
+var getMapIterator$a = function (it) {
+  // eslint-disable-next-line es/no-map -- safe
+  return Map.prototype.entries.call(it);
+};
+
+var $$c = _export;
+var IS_PURE$b = isPure;
+var anObject$b = anObject$A;
+var bind$6 = functionBindContext;
+var getMapIterator$9 = getMapIterator$a;
+var iterate$b = iterate$r; // `Map.prototype.every` method
+// https://github.com/tc39/proposal-collection-methods
+
+$$c({
+  target: 'Map',
+  proto: true,
+  real: true,
+  forced: IS_PURE$b
+}, {
+  every: function every(callbackfn
+  /* , thisArg */
+  ) {
+    var map = anObject$b(this);
+    var iterator = getMapIterator$9(map);
+    var boundFunction = bind$6(callbackfn, arguments.length > 1 ? arguments[1] : undefined, 3);
+    return !iterate$b(iterator, function (key, value, stop) {
+      if (!boundFunction(value, key, map)) return stop();
+    }, {
+      AS_ENTRIES: true,
+      IS_ITERATOR: true,
+      INTERRUPTED: true
+    }).stopped;
+  }
+});
+
+var $$b = _export;
+var IS_PURE$a = isPure;
+var getBuiltIn$3 = getBuiltIn$h;
+var anObject$a = anObject$A;
+var aFunction$6 = aFunction$o;
+var bind$5 = functionBindContext;
+var speciesConstructor$2 = speciesConstructor$a;
+var getMapIterator$8 = getMapIterator$a;
+var iterate$a = iterate$r; // `Map.prototype.filter` method
+// https://github.com/tc39/proposal-collection-methods
+
+$$b({
+  target: 'Map',
+  proto: true,
+  real: true,
+  forced: IS_PURE$a
+}, {
+  filter: function filter(callbackfn
+  /* , thisArg */
+  ) {
+    var map = anObject$a(this);
+    var iterator = getMapIterator$8(map);
+    var boundFunction = bind$5(callbackfn, arguments.length > 1 ? arguments[1] : undefined, 3);
+    var newMap = new (speciesConstructor$2(map, getBuiltIn$3('Map')))();
+    var setter = aFunction$6(newMap.set);
+    iterate$a(iterator, function (key, value) {
+      if (boundFunction(value, key, map)) setter.call(newMap, key, value);
+    }, {
+      AS_ENTRIES: true,
+      IS_ITERATOR: true
+    });
+    return newMap;
+  }
+});
+
+var $$a = _export;
+var IS_PURE$9 = isPure;
+var anObject$9 = anObject$A;
+var bind$4 = functionBindContext;
+var getMapIterator$7 = getMapIterator$a;
+var iterate$9 = iterate$r; // `Map.prototype.find` method
+// https://github.com/tc39/proposal-collection-methods
+
+$$a({
+  target: 'Map',
+  proto: true,
+  real: true,
+  forced: IS_PURE$9
+}, {
+  find: function find(callbackfn
+  /* , thisArg */
+  ) {
+    var map = anObject$9(this);
+    var iterator = getMapIterator$7(map);
+    var boundFunction = bind$4(callbackfn, arguments.length > 1 ? arguments[1] : undefined, 3);
+    return iterate$9(iterator, function (key, value, stop) {
+      if (boundFunction(value, key, map)) return stop(value);
+    }, {
+      AS_ENTRIES: true,
+      IS_ITERATOR: true,
+      INTERRUPTED: true
+    }).result;
+  }
+});
+
+var $$9 = _export;
+var IS_PURE$8 = isPure;
+var anObject$8 = anObject$A;
+var bind$3 = functionBindContext;
+var getMapIterator$6 = getMapIterator$a;
+var iterate$8 = iterate$r; // `Map.prototype.findKey` method
+// https://github.com/tc39/proposal-collection-methods
+
+$$9({
+  target: 'Map',
+  proto: true,
+  real: true,
+  forced: IS_PURE$8
+}, {
+  findKey: function findKey(callbackfn
+  /* , thisArg */
+  ) {
+    var map = anObject$8(this);
+    var iterator = getMapIterator$6(map);
+    var boundFunction = bind$3(callbackfn, arguments.length > 1 ? arguments[1] : undefined, 3);
+    return iterate$8(iterator, function (key, value, stop) {
+      if (boundFunction(value, key, map)) return stop(key);
+    }, {
+      AS_ENTRIES: true,
+      IS_ITERATOR: true,
+      INTERRUPTED: true
+    }).result;
+  }
+});
+
+// https://tc39.es/ecma262/#sec-samevaluezero
+
+var sameValueZero$1 = function (x, y) {
+  // eslint-disable-next-line no-self-compare -- NaN check
+  return x === y || x != x && y != y;
+};
+
+var $$8 = _export;
+var IS_PURE$7 = isPure;
+var anObject$7 = anObject$A;
+var getMapIterator$5 = getMapIterator$a;
+var sameValueZero = sameValueZero$1;
+var iterate$7 = iterate$r; // `Map.prototype.includes` method
+// https://github.com/tc39/proposal-collection-methods
+
+$$8({
+  target: 'Map',
+  proto: true,
+  real: true,
+  forced: IS_PURE$7
+}, {
+  includes: function includes(searchElement) {
+    return iterate$7(getMapIterator$5(anObject$7(this)), function (key, value, stop) {
+      if (sameValueZero(value, searchElement)) return stop();
+    }, {
+      AS_ENTRIES: true,
+      IS_ITERATOR: true,
+      INTERRUPTED: true
+    }).stopped;
+  }
+});
+
+var $$7 = _export;
+var IS_PURE$6 = isPure;
+var anObject$6 = anObject$A;
+var getMapIterator$4 = getMapIterator$a;
+var iterate$6 = iterate$r; // `Map.prototype.includes` method
+// https://github.com/tc39/proposal-collection-methods
+
+$$7({
+  target: 'Map',
+  proto: true,
+  real: true,
+  forced: IS_PURE$6
+}, {
+  keyOf: function keyOf(searchElement) {
+    return iterate$6(getMapIterator$4(anObject$6(this)), function (key, value, stop) {
+      if (value === searchElement) return stop(key);
+    }, {
+      AS_ENTRIES: true,
+      IS_ITERATOR: true,
+      INTERRUPTED: true
+    }).result;
+  }
+});
+
+var $$6 = _export;
+var IS_PURE$5 = isPure;
+var getBuiltIn$2 = getBuiltIn$h;
+var anObject$5 = anObject$A;
+var aFunction$5 = aFunction$o;
+var bind$2 = functionBindContext;
+var speciesConstructor$1 = speciesConstructor$a;
+var getMapIterator$3 = getMapIterator$a;
+var iterate$5 = iterate$r; // `Map.prototype.mapKeys` method
+// https://github.com/tc39/proposal-collection-methods
+
+$$6({
+  target: 'Map',
+  proto: true,
+  real: true,
+  forced: IS_PURE$5
+}, {
+  mapKeys: function mapKeys(callbackfn
+  /* , thisArg */
+  ) {
+    var map = anObject$5(this);
+    var iterator = getMapIterator$3(map);
+    var boundFunction = bind$2(callbackfn, arguments.length > 1 ? arguments[1] : undefined, 3);
+    var newMap = new (speciesConstructor$1(map, getBuiltIn$2('Map')))();
+    var setter = aFunction$5(newMap.set);
+    iterate$5(iterator, function (key, value) {
+      setter.call(newMap, boundFunction(value, key, map), value);
+    }, {
+      AS_ENTRIES: true,
+      IS_ITERATOR: true
+    });
+    return newMap;
+  }
+});
+
+var $$5 = _export;
+var IS_PURE$4 = isPure;
+var getBuiltIn$1 = getBuiltIn$h;
+var anObject$4 = anObject$A;
+var aFunction$4 = aFunction$o;
+var bind$1 = functionBindContext;
+var speciesConstructor = speciesConstructor$a;
+var getMapIterator$2 = getMapIterator$a;
+var iterate$4 = iterate$r; // `Map.prototype.mapValues` method
+// https://github.com/tc39/proposal-collection-methods
+
+$$5({
+  target: 'Map',
+  proto: true,
+  real: true,
+  forced: IS_PURE$4
+}, {
+  mapValues: function mapValues(callbackfn
+  /* , thisArg */
+  ) {
+    var map = anObject$4(this);
+    var iterator = getMapIterator$2(map);
+    var boundFunction = bind$1(callbackfn, arguments.length > 1 ? arguments[1] : undefined, 3);
+    var newMap = new (speciesConstructor(map, getBuiltIn$1('Map')))();
+    var setter = aFunction$4(newMap.set);
+    iterate$4(iterator, function (key, value) {
+      setter.call(newMap, key, boundFunction(value, key, map));
+    }, {
+      AS_ENTRIES: true,
+      IS_ITERATOR: true
+    });
+    return newMap;
+  }
+});
+
+var $$4 = _export;
+var IS_PURE$3 = isPure;
+var anObject$3 = anObject$A;
+var aFunction$3 = aFunction$o;
+var iterate$3 = iterate$r; // `Map.prototype.merge` method
+// https://github.com/tc39/proposal-collection-methods
+
+$$4({
+  target: 'Map',
+  proto: true,
+  real: true,
+  forced: IS_PURE$3
+}, {
+  // eslint-disable-next-line no-unused-vars -- required for `.length`
+  merge: function merge(iterable
+  /* ...iterbles */
+  ) {
+    var map = anObject$3(this);
+    var setter = aFunction$3(map.set);
+    var argumentsLength = arguments.length;
+    var i = 0;
+
+    while (i < argumentsLength) {
+      iterate$3(arguments[i++], setter, {
+        that: map,
+        AS_ENTRIES: true
+      });
+    }
+
+    return map;
+  }
+});
+
+var $$3 = _export;
+var IS_PURE$2 = isPure;
+var anObject$2 = anObject$A;
+var aFunction$2 = aFunction$o;
+var getMapIterator$1 = getMapIterator$a;
+var iterate$2 = iterate$r; // `Map.prototype.reduce` method
+// https://github.com/tc39/proposal-collection-methods
+
+$$3({
+  target: 'Map',
+  proto: true,
+  real: true,
+  forced: IS_PURE$2
+}, {
+  reduce: function reduce(callbackfn
+  /* , initialValue */
+  ) {
+    var map = anObject$2(this);
+    var iterator = getMapIterator$1(map);
+    var noInitial = arguments.length < 2;
+    var accumulator = noInitial ? undefined : arguments[1];
+    aFunction$2(callbackfn);
+    iterate$2(iterator, function (key, value) {
+      if (noInitial) {
+        noInitial = false;
+        accumulator = value;
+      } else {
+        accumulator = callbackfn(accumulator, value, key, map);
+      }
+    }, {
+      AS_ENTRIES: true,
+      IS_ITERATOR: true
+    });
+    if (noInitial) throw TypeError('Reduce of empty map with no initial value');
+    return accumulator;
+  }
+});
+
+var $$2 = _export;
+var IS_PURE$1 = isPure;
+var anObject$1 = anObject$A;
+var bind = functionBindContext;
+var getMapIterator = getMapIterator$a;
+var iterate$1 = iterate$r; // `Set.prototype.some` method
+// https://github.com/tc39/proposal-collection-methods
+
+$$2({
+  target: 'Map',
+  proto: true,
+  real: true,
+  forced: IS_PURE$1
+}, {
+  some: function some(callbackfn
+  /* , thisArg */
+  ) {
+    var map = anObject$1(this);
+    var iterator = getMapIterator(map);
+    var boundFunction = bind(callbackfn, arguments.length > 1 ? arguments[1] : undefined, 3);
+    return iterate$1(iterator, function (key, value, stop) {
+      if (boundFunction(value, key, map)) return stop();
+    }, {
+      AS_ENTRIES: true,
+      IS_ITERATOR: true,
+      INTERRUPTED: true
+    }).stopped;
+  }
+});
+
+var $$1 = _export;
+var IS_PURE = isPure;
+var anObject = anObject$A;
+var aFunction$1 = aFunction$o; // `Set.prototype.update` method
+// https://github.com/tc39/proposal-collection-methods
+
+$$1({
+  target: 'Map',
+  proto: true,
+  real: true,
+  forced: IS_PURE
+}, {
+  update: function update(key, callback
+  /* , thunk */
+  ) {
+    var map = anObject(this);
+    var length = arguments.length;
+    aFunction$1(callback);
+    var isPresentInMap = map.has(key);
+
+    if (!isPresentInMap && length < 3) {
+      throw TypeError('Updating absent value');
+    }
+
+    var value = isPresentInMap ? map.get(key) : aFunction$1(length > 2 ? arguments[2] : undefined)(key, map);
+    map.set(key, callback(value, key, map));
+    return map;
+  }
+});
+
+const {
+  EventEmitter
+} = require$$0__default$1['default'];
+const CacheStorageEvents = {
+  CLEANUP: 'cs@cleanup'
+};
+/**
+ * @typedef {{data: any, expireAt: Date}} CacheData
+ */
+
+/**
+ * A cache storage for storing any type of data.
+ */
+
+class CacheStorage extends EventEmitter {
+  /**
+   * @type {string}
+   */
+
+  /**
+   * @type {Map<any, CacheData>}
+   * @readonly
+   */
+  // will expire after 30 minutes.
+
+  /**
+   * Construct a cache storage.
+   *
+   * @param {string?} id The ID of this cache storage.
+   */
+  constructor(id) {
+    super(); // Set the ID of this cache storage.
+
+    _defineProperty(this, "id", 'Default Cache Storage');
+
+    _defineProperty(this, "cacheMap", new Map());
+
+    _defineProperty(this, "aliveDuration", 30 * 60 * 1000);
+
+    if (id) this.id = id; // Register the CLEANUP event. It will clean up
+    // the expired cache when emitting "CLEANUP" event.
+
+    this.on(CacheStorageEvents.CLEANUP, async () => this.removeExpiredCache());
+  }
+  /**
+   * Get the absolute UNIX timestamp the cache will be ended.
+   * @return {number}
+   * @constructor
+   */
+
+
+  get WillExpireAt() {
+    return Date.now() + this.aliveDuration;
+  }
+  /**
+   * Remove the expired cache.
+   */
+
+
+  removeExpiredCache() {
+    console.log(`CACHE > Cleaning up the expired caches in ${this.id}...`);
+    this.cacheMap.forEach((cachedData, key) => {
+      if (cachedData.expireAt <= Date.now()) this.cacheMap.delete(key);
+    });
+  }
+  /**
+   * Cache the response.
+   *
+   * @template T
+   * @param {any} key the unique key of action to be cached.
+   * @param {() => Promise<T>} action the action to do and be cached.
+   * @param {number?} expireAt customize the expireAt of this key.
+   * @return {Promise<T>}
+   */
+
+
+  async cache(key, action, expireAt) {
+    // Disable the cache when the NO_CACHE = true.
+    if (process.env.NO_CACHE === 'true') {
+      return action();
+    } // Push the CLEANUP task to the event loop - "polling",
+    // so that it won't block the cache() task.
+
+
+    this.emit(CacheStorageEvents.CLEANUP); // Check if we have cached it before.
+    // If true, we return the cached value.
+
+    const cachedData = this.cacheMap.get(key); // Object.toString() can't bring any useful information,
+    // we show "Something" instead.
+
+    const logKey = typeof key === 'object' ? 'Something' : key;
+
+    if (cachedData) {
+      console.log(`CACHE > (${this.id}) ${logKey} hit!`);
+      return cachedData.data;
+    } // Cache the response of action() and
+    // register into our cache map.
+
+
+    console.log(`CACHE > (${this.id}) ${logKey} didn't hit. Creating cache...`);
+    const sourceResponse = await action();
+    this.cacheMap.set(key, {
+      data: sourceResponse,
+      expireAt: new Date(expireAt || this.WillExpireAt)
+    });
+    return sourceResponse;
+  }
+
+}
+/**
+ * The group which aimed to manage all CacheStorage and
+ * call the common method such as `removeExpiredCache()`.
+ */
+
+
+class CacheStorageGroup$2 {
+  /**
+   * @type {CacheStorageGroup | undefined}
+   */
+
+  /** @type {Set<CacheStorage>} */
+
+  /** @private */
+  constructor() {
+    _defineProperty(this, "cacheStorages", new Set());
+  }
+  /**
+   * @return {CacheStorageGroup}
+   */
+
+
+  static getInstance() {
+    if (!CacheStorageGroup$2.instance) CacheStorageGroup$2.instance = new CacheStorageGroup$2();
+    return CacheStorageGroup$2.instance;
+  }
+
+  cleanup() {
+    this.cacheStorages.forEach(storage => storage.removeExpiredCache());
+  }
+
+}
+/**
+ * The CacheStorageGroup instance that is used internally.
+ *
+ * Don't export it!
+ *
+ * @type {CacheStorageGroup}
+ */
+
+
+_defineProperty(CacheStorageGroup$2, "instance", undefined);
+
+const csgInstance$1 = CacheStorageGroup$2.getInstance();
+/**
+ * Get the managed CacheStorage.
+ *
+ * “Managed” means that this CacheStorage has been
+ * added to CacheStorageGroup.
+ *
+ * @param {string} id
+ * @return {CacheStorage}
+ */
+
+function getManagedCacheStorage$b(id) {
+  const cs = new CacheStorage(id);
+  csgInstance$1.cacheStorages.add(cs);
+  return cs;
+}
+
+var cache = {
+  CacheStorage,
+  CacheStorageEvents,
+  CacheStorageGroup: CacheStorageGroup$2,
+  getManagedCacheStorage: getManagedCacheStorage$b
+};
+
 const insure$5 = insure$6.exports;
 const select$6 = select$7.exports;
 const request$c = request_1;
+const {
+  getManagedCacheStorage: getManagedCacheStorage$a
+} = cache;
 const headers$2 = {
   origin: 'http://y.qq.com/',
   referer: 'http://y.qq.com/',
@@ -3008,7 +3561,9 @@ const track$8 = id => {
   return Promise.all([['F000', '.flac'], ['M800', '.mp3'], ['M500', '.mp3']].slice(headers$2.cookie || typeof window !== 'undefined' ? select$6.ENABLE_FLAC ? 0 : 1 : 2).map(format => single$2(id, format).catch(() => null))).then(result => result.find(url => url) || Promise.reject()).catch(() => insure$5().qq.track(id));
 };
 
-const check$9 = info => cache$a(search$7, info).then(track$8);
+const cs$a = getManagedCacheStorage$a('provider/qq');
+
+const check$9 = info => cs$a.cache(info, () => search$7(info)).then(track$8);
 
 var qq = {
   check: check$9,
@@ -4548,11 +5103,13 @@ var kwDES = {
   } catch (e) {}
 })(crypto$4);
 
-const cache$9 = cache$b;
 const insure$4 = insure$6.exports;
 const select$5 = select$7.exports;
 const crypto$3 = crypto$4.exports;
 const request$b = request_1;
+const {
+  getManagedCacheStorage: getManagedCacheStorage$9
+} = cache;
 
 const format$4 = song => {
   return {
@@ -4606,18 +5163,22 @@ const single$1 = (song, format) => {
 
 const track$7 = song => Promise.all(['sqhash', 'hqhash', 'hash'].slice(select$5.ENABLE_FLAC ? 0 : 1).map(format => single$1(song, format).catch(() => null))).then(result => result.find(url => url) || Promise.reject()).catch(() => insure$4().kugou.track(song));
 
-const check$8 = info => cache$9(search$6, info).then(track$7);
+const cs$9 = getManagedCacheStorage$9('provider/kugou');
+
+const check$8 = info => cs$9.cache(info, () => search$6(info)).then(track$7);
 
 var kugou = {
   check: check$8,
   search: search$6
 };
 
-const cache$8 = cache$b;
 const insure$3 = insure$6.exports;
 const select$4 = select$7.exports;
 const crypto$2 = crypto$4.exports;
 const request$a = request_1;
+const {
+  getManagedCacheStorage: getManagedCacheStorage$8
+} = cache;
 
 const format$3 = song => ({
   id: song.musicrid.split('_').pop(),
@@ -4686,17 +5247,21 @@ const track$6 = id => {
   }).catch(() => insure$3().kuwo.track(id));
 };
 
-const check$7 = info => cache$8(search$5, info).then(track$6);
+const cs$8 = getManagedCacheStorage$8('provider/kuwo');
+
+const check$7 = info => cs$8.cache(info, () => search$5(info)).then(track$6);
 
 var kuwo = {
   check: check$7,
   track: track$6
 };
 
-const cache$7 = cache$b;
 const insure$2 = insure$6.exports;
 const select$3 = select$7.exports;
 const request$9 = request_1;
+const {
+  getManagedCacheStorage: getManagedCacheStorage$7
+} = cache;
 const headers$1 = {
   origin: 'http://music.migu.cn/',
   referer: 'http://m.music.migu.cn/v3/',
@@ -4751,18 +5316,22 @@ const single = (id, format) => {
 const track$5 = id => Promise.all( // [3, 2, 1].slice(select.ENABLE_FLAC ? 0 : 1)
 ['ZQ', 'SQ', 'HQ', 'PQ'].slice(select$3.ENABLE_FLAC ? 0 : 2).map(format => single(id, format).catch(() => null))).then(result => result.find(url => url) || Promise.reject()).catch(() => insure$2().migu.track(id));
 
-const check$6 = info => cache$7(search$4, info).then(track$5);
+const cs$7 = getManagedCacheStorage$7('provider/migu');
+
+const check$6 = info => cs$7.cache(info, () => search$4(info)).then(track$5);
 
 var migu = {
   check: check$6,
   track: track$5
 };
 
-const cache$6 = cache$b;
 const insure$1 = insure$6.exports;
 const select$2 = select$7.exports;
 const crypto$1 = crypto$4.exports;
 const request$8 = request_1;
+const {
+  getManagedCacheStorage: getManagedCacheStorage$6
+} = cache;
 const headers = {
   origin: 'http://www.joox.com',
   referer: 'http://www.joox.com',
@@ -4819,23 +5388,28 @@ const track$4 = id => {
   }).catch(() => insure$1().joox.track(id));
 };
 
-const check$5 = info => cache$6(search$3, info).then(track$4);
+const cs$6 = getManagedCacheStorage$6('provider/joox');
+
+const check$5 = info => cs$6.cache(info, () => search$3(info)).then(track$4);
 
 var joox = {
   check: check$5,
   track: track$4
 };
 
-const cache$5 = cache$b;
 const request$7 = request_1;
+const {
+  getManagedCacheStorage: getManagedCacheStorage$5
+} = cache;
 
 const parse$3 = query => (query || '').split('&').reduce((result, item) => {
   const splitItem = item.split('=').map(decodeURIComponent);
   return Object.assign({}, result, {
     [splitItem[0]]: splitItem[1]
   });
-}, {}); // const proxy = require('url').parse('http://127.0.0.1:1080')
+}, {});
 
+const cs$5 = getManagedCacheStorage$5('provider/youtube'); // const proxy = require('url').parse('http://127.0.0.1:1080')
 
 const proxy$2 = undefined;
 const key$2 = process.env.YOUTUBE_KEY || null; // YouTube Data API v3
@@ -4893,19 +5467,24 @@ const track$3 = id => {
     // .sort((a, b) => b.bitrate - a.bitrate)[0]
 
     const target = parse$3(stream.signatureCipher);
-    return stream.url || (target.sp.includes('sig') ? cache$5(signature, undefined, 24 * 60 * 60 * 1000).then(sign => target.url + '&sig=' + sign(target.s)) : target.url);
+    return stream.url || (target.sp.includes('sig') ? cs$5.cache('YOUTUBE_SIGNATURE', () => signature(), Date.now() + 24 * 60 * 60 * 1000).then(sign => target.url + '&sig=' + sign(target.s)) : target.url);
   });
 };
 
-const check$4 = info => cache$5(key$2 ? apiSearch$1 : search$2, info).then(track$3);
+const check$4 = info => cs$5.cache(info, () => {
+  if (key$2) return apiSearch$1(info);
+  return search$2(info);
+}).then(track$3);
 
 var youtube = {
   check: check$4,
   track: track$3
 };
 
-const cache$4 = cache$b;
-const request$6 = request_1; // const proxy = require('url').parse('http://127.0.0.1:1080')
+const request$6 = request_1;
+const {
+  getManagedCacheStorage: getManagedCacheStorage$4
+} = cache; // const proxy = require('url').parse('http://127.0.0.1:1080')
 
 const proxy$1 = undefined;
 const key$1 = process.env.YOUTUBE_KEY || null; // YouTube Data API v3
@@ -4938,14 +5517,23 @@ const track$2 = id => {
   });
 };
 
-const check$3 = info => cache$4(key$1 ? apiSearch : search$1, info).then(track$2);
+const cs$4 = getManagedCacheStorage$4('provider/yt-download');
+
+const check$3 = info => cs$4.cache(info, () => {
+  if (key$1) return apiSearch(info);
+  return search$1(info);
+}).then(track$2);
 
 var ytDownload = {
   check: check$3,
   track: track$2
 };
 
-const cache$3 = cache$b;
+const {
+  cacheStorage,
+  CacheStorageGroup: CacheStorageGroup$1,
+  getManagedCacheStorage: getManagedCacheStorage$3
+} = cache;
 const insure = insure$6.exports;
 const select$1 = select$7.exports;
 const request$5 = request_1;
@@ -4983,16 +5571,20 @@ const track$1 = id => {
   }).catch(() => insure().bilibili.track(id));
 };
 
-const check$2 = info => cache$3(search, info).then(track$1);
+const cs$3 = getManagedCacheStorage$3('provider/bilibili');
+
+const check$2 = info => cs$3.cache(info, () => search(info)).then(track$1);
 
 var bilibili = {
   check: check$2,
   track: track$1
 };
 
-const cache$2 = cache$b;
 const select = select$7.exports;
 const request$4 = request_1;
+const {
+  getManagedCacheStorage: getManagedCacheStorage$2
+} = cache;
 
 const track = info => {
   const url = 'http://mos9527.tooo.top/ncm/pyncm/track/GetTrackAudio?song_ids=' + info.id + '&bitrate=' + ['999000', '320000'].slice(select.ENABLE_FLAC ? 0 : 1, select.ENABLE_FLAC ? 1 : 2);
@@ -5007,7 +5599,9 @@ const track = info => {
   });
 };
 
-const check$1 = info => cache$2(track, info);
+const cs$2 = getManagedCacheStorage$2('provider/pyncmd');
+
+const check$1 = info => cs$2.cache(info, () => track(info));
 
 var pyncmd = {
   check: check$1
@@ -5031,11 +5625,11 @@ var consts$1 = {
 };
 
 var $ = _export;
-var aFunction = aFunction$i;
-var getBuiltIn = getBuiltIn$e;
+var aFunction = aFunction$o;
+var getBuiltIn = getBuiltIn$h;
 var newPromiseCapabilityModule = newPromiseCapability$2;
 var perform = perform$2;
-var iterate = iterate$g;
+var iterate = iterate$r;
 var PROMISE_ANY_ERROR = 'No one promise resolved'; // `Promise.any` method
 // https://tc39.es/ecma262/#sec-promise.any
 
@@ -5077,8 +5671,10 @@ $({
   }
 });
 
-const cache$1 = cache$b;
 const request$3 = request_1;
+const {
+  getManagedCacheStorage: getManagedCacheStorage$1
+} = cache;
 
 const filter = (object, keys) => Object.keys(object).reduce((result, key) => Object.assign(result, keys.includes(key) && {
   [key]: object[key]
@@ -5129,11 +5725,13 @@ const find$1 = (id, data) => {
   }
 };
 
+const cs$1 = getManagedCacheStorage$1('provider/find');
+
 var find_1 = (id, data) => {
   if (data) {
     return find$1(id, data);
   } else {
-    return cache$1(find$1, id);
+    return cs$1.cache(id, () => find$1(id));
   }
 };
 
@@ -5280,7 +5878,6 @@ const decode = buffer => {
 
 var match_1 = match$1;
 
-const cache = cache$b;
 const parse$2 = require$$5__default['default'].parse;
 const crypto = crypto$4.exports;
 const request$1 = request_1;
@@ -5289,6 +5886,11 @@ const querystring = require$$2__default$1['default'];
 const {
   isHost: isHost$1
 } = utilities;
+const {
+  getManagedCacheStorage
+} = cache;
+const cs = getManagedCacheStorage('hook');
+cs.aliveDuration = 7 * 24 * 60 * 60 * 1000;
 const hook$2 = {
   request: {
     before: () => {},
@@ -5629,7 +6231,10 @@ const tryMatch = ctx => {
           const cookie = querystring.parse(req.headers.cookie.replace(/\s/g, ''), ';');
           const os = header.os || cookie.os,
                 version = header.appver || cookie.appver;
-          if (os in limit && newer(limit[os], version)) return cache(computeHash, task, 7 * 24 * 60 * 60 * 1000).then(value => item.md5 = value);
+
+          if (os in limit && newer(limit[os], version)) {
+            return cs.cache(task, () => computeHash(task)).then(value => item.md5 = value);
+          }
         } catch (e) {}
       }).catch(() => {});
     } else if (item.code === 200 && netease.web) {
@@ -5993,6 +6598,9 @@ if (config.token && !/\S+:\S+/.test(config.token)) {
 const parse = require$$5__default['default'].parse;
 const hook = hook_1;
 const server = server_1;
+const {
+  CacheStorageGroup
+} = cache;
 
 const target = Array.from(hook.target.host);
 commonjsGlobal.port = config.port;
@@ -6007,7 +6615,7 @@ commonjsGlobal.endpoint = config.endpoint;
 if (config.endpoint) server.whitelist.push(escape(config.endpoint)); // hosts['music.httpdns.c.163.com'] = random(['59.111.181.35', '59.111.181.38'])
 // hosts['httpdns.n.netease.com'] = random(['59.111.179.213', '59.111.179.214'])
 
-const dns = host => new Promise((resolve, reject) => require$$7__default['default'].lookup(host, {
+const dns = host => new Promise((resolve, reject) => require$$8__default['default'].lookup(host, {
   all: true
 }, (error, records) => error ? reject(error) : resolve(records.map(record => record.address))));
 
@@ -6017,7 +6625,12 @@ const httpdns2 = host => request_1('GET', 'http://httpdns.n.netease.com/httpdns/
 // It seems broken - BETTER TO NOT ENABLE IT!
 
 
-const dnsSource = process.env.ENABLE_HTTPDNS === 'true' ? [httpdns, httpdns2] : [];
+const dnsSource = process.env.ENABLE_HTTPDNS === 'true' ? [httpdns, httpdns2] : []; // Start the "Clean Cache" background task.
+
+const csgInstance = CacheStorageGroup.getInstance();
+setInterval(() => {
+  csgInstance.cleanup();
+}, 15 * 60 * 1000);
 Promise.all(dnsSource.map(query => query(target.join(','))).concat(target.map(dns))).then(result => {
   const {
     host
