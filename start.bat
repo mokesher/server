@@ -1,4 +1,4 @@
-node "D:\Program Files\music_player\server\nw.js"
+node "D:\software\music_player\server\nw.js"
 
 echo end
 pause
