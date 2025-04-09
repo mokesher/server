@@ -89,3 +89,14 @@ daemon/
 !.yarn/releases
 !.yarn/sdks
 !.yarn/versions
+/.idea/inspectionProfiles/profiles_settings.xml
+/.idea/inspectionProfiles/Project_Default.xml
+/.idea/.gitignore
+/.idea/deployment.xml
+/.idea/dictionaries
+/.idea/encodings.xml
+/.idea/markdown.xml
+/.idea/misc.xml
+/.idea/modules.xml
+/.idea/server.iml
+/.idea/vcs.xml
